@@ -1,0 +1,12 @@
+mat-card {
+  background-color: slategray;
+}
+
+.post-input {
+  color: #000000;
+}
+
+mat-form-field,
+textarea {
+  width: 100%;
+}
