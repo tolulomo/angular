@@ -10,3 +10,23 @@ mat-form-field,
 textarea {
   width: 100%;
 }
+
+mat-spinner {
+  margin: auto;
+  width: 4rem;
+  height: auto;
+}
+
+button {
+  margin-right: 1rem;
+}
+
+input[type="file"] {
+  visibility: hidden;
+  width: 0;
+}
+
+.form-status {
+  display: inline;
+  font-weight: 300;
+}

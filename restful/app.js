@@ -1,8 +1,9 @@
 const express = require('express');
 const parser = require('body-parser');
 const mongoose = require('mongoose');
-const config = require('../rest-config')
-const Post = require('./schemas/post');
+const config = require('../rest-config');
+
+const postRoutes = require('./routes/posts');
 
 //Starting Express
 const app = express();
@@ -33,34 +34,9 @@ app.use((req, res, next) => {
   next();
 })
 
+app.use("/posts", postRoutes);
 
-//Get Post Endpoint
-app.get('/post', (req, res, next) => {
-  const posts = [
-    {id:'1', title:'Hello', content: 'Checking if this works'},
-    {id:'2', title:'Second Text', content: 'Checking if this works. This is coming from the server'}
-  ]
-  res.status(200).json({posts: posts})
-});
 
-//Add Post Endpoint
-app.post('/addpost', (req, res, next) => {
-  const title = req.body.title;
-  const content = req.body.content;
-  const post = new Post({
-    title:title,
-    content:content
-  })
-  post.save().
-  then(result => {
-    res.status(201).json({message: 'Post Added Successfully!'})
-  }).
-  catch(err => {
-    const error = err;
-    error.status = 404;
-    next(error);
-  })
-});
 
 module.exports = app;
 
